@@ -1,41 +1,203 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-<meta charset="utf-8">
-<title>あなたのＨＰタイトル</title>
-<meta name="keywords" content="ページのキーワードA,B,C">
-<meta name="description" content="ページの説明">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div id="outer">
-<header>
-<div class="header-inner">
-<h1>あなたのＨＰタイトル</h1>
-<p>あなたのＨＰの説明文</p>
-</div>
-</header>
-<div id="content">
-<div class="inner">
-<h2>記事ページ見出し・大</h2>
-<p>文章あれこれ</p>
-<h3>記事ページ見出し・中</h3>
-<p>文章あれこれ</p>
-<h4>記事ページ見出し・小</h4>
-<p>文章あれこれ</p>
-</div>
-<aside>
-<div class="left-title">サイドバータイトル</div>
-<div class="link">
-<ul>
-<li>記事ページへのリンク</li>
-<li>記事ページへのリンク</li>
-</ul>
-</div>
-</aside>
-</div>
-<footer>© 2010 あなたのホームページ</footer>
-</div>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>Ket01 TFT Page</title>
+    <meta name="keywords" content="TFT, Team Fight Tactics, 確率, コスト">
+    <meta name="description" content="ページの説明">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div id="outer">
+      <header>
+        <div class="header-inner">
+          <h1>TFT(Team Fight Tactics)の自動確率計算</h1>
+          <p style="font-size:13px;">
+            このサイトでは、ある盤面において欲しいキャラの枚数の期待値もしくは目的の枚数を引ける確率を厳密に計算することができます。
+          </p>
+        </div>
+      </header>
+      <div id="content">
+        <div class="inner">
+          <h2>TFT set 15 (patch 15.3) </h2>
+          <h4>以下の項目を選択してください。</h4>
+          <ul class="main-content">
+            <li>
+              <p>計算する値</p>
+              <form id="select_mode">
+                <label>
+                  <input type="radio" name="select_mode" value="probability" checked>
+                  目的のキャラを引く確率（枚数ごと）
+                </label>
+                <label>
+                  <input type="radio" name="select_mode" value="pandora" disabled>
+                  [準備中]パンドラのベンチで引く確率
+                </label>
+                <br>
+                <label>
+                  <input type="radio" name="select_mode" value="expected_value" disabled>
+                  [準備中]目的のキャラを引く枚数の期待値
+                </label>
+              </form>
+            </li>
+            <li>
+              <p>現在のレベル</p>
+              <form id="player_level">
+                <label>
+                  <input type="radio" name="player_level" value="1" checked>
+                  １レベル
+                </label>
+                <label>
+                  <input type="radio" name="player_level" value="2">
+                  ２レベル
+                </label>
+                <label>
+                  <input type="radio" name="player_level" value="3">
+                  ３レベル
+                </label>
+                <label>
+                  <input type="radio" name="player_level" value="4">
+                  ４レベル
+                </label>
+                <label>
+                  <input type="radio" name="player_level" value="5">
+                  ５レベル
+                </label>
+                <br>
+                <label>
+                  <input type="radio" name="player_level" value="6">
+                  ６レベル
+                </label>
+                <label>
+                  <input type="radio" name="player_level" value="7">
+                  ７レベル
+                </label>
+                <label>
+                  <input type="radio" name="player_level" value="8">
+                  ８レベル
+                </label>
+                <label>
+                  <input type="radio" name="player_level" value="9">
+                  ９レベル
+                </label>
+                <label>
+                  <input type="radio" name="player_level" value="10">
+                  １０レベル
+                </label>
+              </form>
+            </li>
+            <li>
+              <p>目的のキャラのコストと引かれている枚数</p>
+              <form id="demand_character_cost">
+                <label>
+                  <input type="radio" name="demand_character_cost" value="1" checked>
+                  １コスト
+                </label>
+                <label>
+                  <input type="radio" name="demand_character_cost" value="2">
+                  ２コスト
+                </label>
+                <label>
+                  <input type="radio" name="demand_character_cost" value="3">
+                  ３コスト
+                </label>
+                <label>
+                  <input type="radio" name="demand_character_cost" value="4">
+                  ４コスト
+                </label>
+                <label>
+                  <input type="radio" name="demand_character_cost" value="5">
+                  ５コスト
+                </label>
+              </form>
+              <form id="demand_character_count">
+                <label>プレイヤーに引かれている目的のキャラの合計枚数：</label>
+                <input type="number" min="0" max="1000" step="1" value="0">
+                <label>体</label>
+              </form>
+              <form id="same_cost_owned_characters">
+                <label>目的のキャラと同じコストの合計枚数（目的のキャラは含めない）：</label>
+                <input type="number" min="0" max="1000" step="1" value="0">
+                <label>体</label>
+              </form>
+            </li>
+            <li>
+              <p>リロール回数(２ゴールドで１回)</p>
+              <form id="reroll_count">
+                <label>回数：</label>
+                <input type="number" min="0" max="1000" step="1" value="0">
+                <label>回</label>
+              </form>
+            </li>
+          </ul>
+          <form id="button_calculate">
+            <button type="button" onclick="calculate()">確率を計算する</button>
+          </form>
+        </div>
+        <aside>
+          <div class="left-title">カスタム設定</div>
+          <div>
+            <ul class="left-ul">
+              <li>
+                <p>何体までの確率がほしい？
+                  <form id="max_character_count">
+                    <label>計算する最大枚数：</label>
+                    <br>
+                    <input type="number" value="9" max="30" min="9">
+                    <label>体</label>
+                  </form>
+                </p>
+              </li>
+              <li>
+                <p>コストごとの種類と数<br>(set 15)</p>
+                <form id="all_characters">
+                  <div>
+                    <label>１コスト
+                    <input type="number" class="cost1 character_type" min="0" max="1000" step="1" value="14">種
+                    <input type="number" class="cost1 character_count" min="0" max="1000" step="1" value="30">体
+                    </label>
+                  </div>
+                  <div>
+                    <label>２コスト
+                    <input type="number" class="cost2 character_type" min="0" max="1000" step="1" value="13">種
+                    <input type="number" class="cost2 character_count" min="0" max="1000" step="1" value="25">体
+                    </label>
+                  </div>
+                  <div>
+                    <label>３コスト
+                    <input type="number" class="cost3 character_type" min="0" max="1000" step="1" value="13">種
+                    <input type="number" class="cost3 character_count" min="0" max="1000" step="1" value="18">体
+                    </label>
+                  </div>
+                  <div>
+                    <label>４コスト
+                    <input type="number" class="cost4 character_type" min="0" max="1000" step="1" value="13">種
+                    <input type="number" class="cost4 character_count" min="0" max="1000" step="1" value="10">体
+                    </label>
+                  </div>
+                  <div>
+                    <label>５コスト
+                    <input type="number" class="cost5 character_type" min="0" max="1000" step="1" value="8">種
+                    <input type="number" class="cost5 character_count" min="0" max="1000" step="1" value="9">体
+                    </label>
+                  </div>
+                </form>
+              </li>
+              <li>
+                <p>プレイヤーレベルごと<br>に引ける確率（％）</p>
+                <div id="Table"></div>
+              </li>
+            </ul>
+          </div>
+        </aside>
+        <div id="result" class="inner">
+          <h2>Result</h2>
+          <div id="answer" style="padding-left: 20px;"></div>
+        </div>
+      </div>
+      <footer>© 2025 Ket01 HomePage</footer>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>
